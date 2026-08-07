@@ -1,0 +1,553 @@
+<!DOCTYPE html>
+<html lang="hi">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Viraat Numerology Magics — Numerology • Vastu • Jyotish</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rajdhani:wght@500;600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --void: #1F1029;
+    --void-2: #170B21;
+    --marigold: #E3A857;
+    --vermilion: #C1440E;
+    --parchment: #F2E8D5;
+    --ink: #2B1810;
+    --line: rgba(227,168,87,0.25);
+  }
+  *{box-sizing:border-box; margin:0; padding:0;}
+  html{scroll-behavior:smooth;}
+  body{
+    background: var(--void);
+    color: var(--parchment);
+    font-family:'Mukta', sans-serif;
+    line-height:1.6;
+    overflow-x:hidden;
+  }
+  h1,h2,h3,.display{ font-family:'Yatra One', cursive; font-weight:400; letter-spacing:0.5px; }
+  .num{ font-family:'Rajdhani', sans-serif; font-weight:700; }
+
+  a{color:inherit;}
+  img{max-width:100%; display:block;}
+
+  /* ---------- texture ---------- */
+  .stars{
+    position:fixed; inset:0; z-index:0; pointer-events:none;
+    background-image:
+      radial-gradient(1px 1px at 20% 30%, rgba(227,168,87,0.5), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(227,168,87,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(227,168,87,0.35), transparent),
+      radial-gradient(1px 1px at 85% 20%, rgba(227,168,87,0.4), transparent),
+      radial-gradient(1.5px 1.5px at 60% 15%, rgba(227,168,87,0.3), transparent),
+      radial-gradient(1px 1px at 10% 65%, rgba(227,168,87,0.35), transparent);
+    background-size: 100% 100%;
+    opacity:0.6;
+  }
+
+  /* ---------- nav ---------- */
+  header{
+    position:sticky; top:0; z-index:50;
+    display:flex; align-items:center; justify-content:space-between;
+    padding: 18px 6vw;
+    background: rgba(23,11,33,0.85);
+    backdrop-filter: blur(8px);
+    border-bottom: 1px solid var(--line);
+  }
+  .brand{ display:flex; align-items:center; gap:10px; font-size:1.3rem; }
+  .brand .om{ color:var(--marigold); font-size:1.5rem; }
+  nav ul{ list-style:none; display:flex; gap:2.2rem; font-size:0.95rem; }
+  nav a{ text-decoration:none; opacity:0.85; transition:opacity .2s, color .2s; }
+  nav a:hover{ opacity:1; color:var(--marigold); }
+  .nav-cta{
+    background:var(--marigold); color:var(--void); padding:9px 20px;
+    border-radius:2px; text-decoration:none; font-weight:600; font-size:0.9rem;
+    font-family:'Mukta',sans-serif;
+  }
+  .menu-btn{ display:none; background:none; border:none; color:var(--parchment); font-size:1.5rem; cursor:pointer; }
+
+  /* ---------- hero ---------- */
+  .hero{
+    position:relative; z-index:1;
+    padding: 5vw 6vw 6vw;
+    display:grid; grid-template-columns: 1.1fr 1fr; gap:4vw; align-items:center;
+    min-height: 82vh;
+  }
+  .eyebrow{
+    display:inline-block; font-family:'Rajdhani',sans-serif; letter-spacing:3px;
+    text-transform:uppercase; font-size:0.78rem; color:var(--marigold);
+    border:1px solid var(--line); padding:6px 14px; border-radius:20px; margin-bottom:22px;
+  }
+  .hero h1{
+    font-size: clamp(2.4rem, 4.5vw, 3.6rem);
+    line-height:1.15;
+    margin-bottom:20px;
+  }
+  .hero h1 span{ color:var(--marigold); }
+  .hero p.lede{
+    font-size:1.05rem; opacity:0.85; max-width:46ch; margin-bottom:32px;
+  }
+  .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
+  .btn-primary{
+    background:var(--vermilion); color:var(--parchment); padding:14px 28px;
+    border:none; border-radius:2px; font-size:1rem; font-weight:600; cursor:pointer;
+    text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
+    transition: transform .15s ease, background .2s ease;
+  }
+  .btn-primary:hover{ background:#a8390c; transform:translateY(-2px); }
+  .btn-ghost{
+    background:transparent; color:var(--parchment); padding:14px 24px;
+    border:1px solid var(--line); border-radius:2px; font-size:1rem; cursor:pointer;
+    text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
+  }
+  .btn-ghost:hover{ border-color:var(--marigold); color:var(--marigold); }
+
+  /* ---------- calculator (signature element) ---------- */
+  .calc-card{
+    background: linear-gradient(160deg, rgba(227,168,87,0.08), rgba(193,68,14,0.06));
+    border:1px solid var(--line);
+    border-radius:6px;
+    padding: 34px;
+    position:relative;
+  }
+  .calc-card .tag{
+    font-family:'Rajdhani',sans-serif; text-transform:uppercase; letter-spacing:2px;
+    font-size:0.75rem; color:var(--marigold); margin-bottom:14px; display:block;
+  }
+  .calc-tabs{ display:flex; gap:8px; margin-bottom:18px; }
+  .calc-tab{
+    flex:1; text-align:center; padding:9px; border:1px solid var(--line); border-radius:3px;
+    cursor:pointer; font-size:0.88rem; background:transparent; color:var(--parchment); font-family:'Mukta',sans-serif;
+  }
+  .calc-tab.active{ background:var(--marigold); color:var(--void); border-color:var(--marigold); font-weight:600; }
+  .calc-input{
+    width:100%; padding:14px 16px; border-radius:3px; border:1px solid var(--line);
+    background:rgba(0,0,0,0.2); color:var(--parchment); font-size:1rem; margin-bottom:16px;
+    font-family:'Mukta',sans-serif;
+  }
+  .calc-input::placeholder{ color:rgba(242,232,213,0.4); }
+  .calc-btn{
+    width:100%; padding:13px; background:var(--marigold); color:var(--void); border:none;
+    border-radius:3px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:'Mukta',sans-serif;
+    letter-spacing:0.5px;
+  }
+  .calc-result{
+    margin-top:26px; display:none; text-align:center;
+  }
+  .calc-result.show{ display:block; }
+  .reduction-trail{
+    display:flex; justify-content:center; align-items:center; gap:10px; flex-wrap:wrap;
+    margin-bottom:18px; min-height:34px;
+  }
+  .reduction-trail span{
+    font-family:'Rajdhani',sans-serif; font-size:1.1rem; opacity:0; transform:translateY(6px);
+    animation: riseIn .4s ease forwards;
+  }
+  .reduction-trail .arrow{ color:var(--marigold); opacity:0.6; }
+  @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
+  .final-digit{
+    width:110px; height:110px; margin:0 auto 14px; border-radius:50%;
+    border:2px solid var(--marigold);
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Rajdhani',sans-serif; font-size:3rem; font-weight:700; color:var(--marigold);
+    box-shadow: 0 0 0 6px rgba(227,168,87,0.08);
+    animation: pulseGlow 2.4s ease-in-out infinite;
+  }
+  @keyframes pulseGlow{
+    0%,100%{ box-shadow:0 0 0 6px rgba(227,168,87,0.08); }
+    50%{ box-shadow:0 0 0 12px rgba(227,168,87,0.14); }
+  }
+  .calc-note{ font-size:0.88rem; opacity:0.75; max-width:34ch; margin:0 auto 16px; }
+
+  /* ---------- section shell ---------- */
+  section{ position:relative; z-index:1; padding: 90px 6vw; }
+  .section-head{ max-width:640px; margin-bottom:50px; }
+  .section-head .eyebrow{ margin-bottom:14px; }
+  .section-head h2{ font-size:clamp(1.9rem, 3vw, 2.6rem); }
+  .section-head p{ opacity:0.8; margin-top:14px; font-size:1.02rem; }
+  .light{ background:var(--parchment); color:var(--ink); }
+  .light .eyebrow{ border-color:rgba(43,24,16,0.2); }
+  .light hr.rule{ border-color:rgba(43,24,16,0.15); }
+
+  hr.rule{ border:none; border-top:1px solid var(--line); margin: 26px 0; }
+
+  /* ---------- services ---------- */
+  .services{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(43,24,16,0.15); }
+  .service{
+    padding: 34px 28px; border-right:1px solid rgba(43,24,16,0.15); border-bottom:1px solid rgba(43,24,16,0.15);
+  }
+  .service:nth-child(3n){ border-right:none; }
+  .service .sv-num{ font-family:'Rajdhani',sans-serif; font-size:0.85rem; color:var(--vermilion); font-weight:700; letter-spacing:1px; }
+  .service h3{ font-size:1.35rem; margin:10px 0 10px; color:var(--ink); }
+  .service p{ font-size:0.95rem; opacity:0.85; }
+
+  /* ---------- process ---------- */
+  .process{ display:flex; gap:0; counter-reset:step; }
+  .step{ flex:1; position:relative; padding-right:30px; }
+  .step:not(:last-child)::after{
+    content:''; position:absolute; top:22px; right:0; width:100%; height:1px;
+    background: var(--line);
+  }
+  .step-num{
+    width:44px; height:44px; border-radius:50%; border:1px solid var(--marigold); color:var(--marigold);
+    display:flex; align-items:center; justify-content:center; font-family:'Rajdhani',sans-serif;
+    font-weight:700; margin-bottom:18px; position:relative; z-index:1; background:var(--void);
+  }
+  .step h3{ font-size:1.15rem; margin-bottom:8px; }
+  .step p{ font-size:0.92rem; opacity:0.8; max-width:26ch; }
+
+  /* ---------- packages ---------- */
+  .packages{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .pkg{
+    border:1px solid var(--line); border-radius:6px; padding:32px 28px; position:relative;
+    display:flex; flex-direction:column;
+  }
+  .pkg.featured{ border-color:var(--marigold); background:rgba(227,168,87,0.06); }
+  .pkg .badge{
+    position:absolute; top:-13px; right:24px; background:var(--vermilion); color:var(--parchment);
+    font-size:0.72rem; padding:5px 12px; border-radius:20px; font-family:'Rajdhani',sans-serif; letter-spacing:1px;
+  }
+  .pkg h3{ font-size:1.3rem; margin-bottom:6px; }
+  .pkg .price{ font-family:'Rajdhani',sans-serif; font-size:2.1rem; font-weight:700; color:var(--marigold); margin:14px 0; }
+  .pkg .price small{ font-size:0.95rem; font-weight:500; opacity:0.7; font-family:'Mukta',sans-serif; }
+  .pkg ul{ list-style:none; margin:18px 0 26px; flex:1; }
+  .pkg li{ padding:7px 0; font-size:0.92rem; opacity:0.88; border-bottom:1px dashed var(--line); }
+  .pkg li:last-child{ border-bottom:none; }
+
+  /* ---------- booking ---------- */
+  .booking-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start; }
+  .booking-form{ display:flex; flex-direction:column; gap:14px; }
+  .booking-form input, .booking-form select, .booking-form textarea{
+    padding:13px 15px; border-radius:3px; border:1px solid rgba(43,24,16,0.25);
+    background:#fff; font-family:'Mukta',sans-serif; font-size:0.95rem; color:var(--ink);
+  }
+  .booking-form label{ font-size:0.85rem; opacity:0.7; margin-bottom:-8px; }
+  .booking-form .btn-primary{ margin-top:8px; }
+  .why-list{ list-style:none; }
+  .why-list li{ padding:14px 0; border-bottom:1px solid rgba(43,24,16,0.15); display:flex; gap:14px; }
+  .why-list .why-num{ font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--vermilion); }
+
+  /* ---------- footer ---------- */
+  footer{ position:relative; z-index:1; padding:50px 6vw 30px; border-top:1px solid var(--line); }
+  .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:34px; }
+  .foot-brand .om{ color:var(--marigold); }
+  .foot-links{ display:flex; gap:60px; flex-wrap:wrap; }
+  .foot-links h4{ font-family:'Rajdhani',sans-serif; font-size:0.82rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--marigold); margin-bottom:14px; }
+  .foot-links ul{ list-style:none; font-size:0.92rem; opacity:0.85; }
+  .foot-links li{ margin-bottom:9px; }
+  .foot-bottom{ font-size:0.82rem; opacity:0.6; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+
+  @media (max-width: 860px){
+    nav ul{ display:none; }
+    .menu-btn{ display:block; }
+    .hero{ grid-template-columns:1fr; }
+    .services{ grid-template-columns:1fr; }
+    .service{ border-right:none; }
+    .process{ flex-direction:column; gap:26px; }
+    .step:not(:last-child)::after{ display:none; }
+    .packages{ grid-template-columns:1fr; }
+    .booking-wrap{ grid-template-columns:1fr; }
+  }
+
+  :focus-visible{ outline:2px solid var(--marigold); outline-offset:3px; }
+  @media (prefers-reduced-motion: reduce){
+    *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
+  }
+</style>
+</head>
+<body>
+<div class="stars"></div>
+
+<header>
+  <div class="brand"><span class="om">ॐ</span> Viraat Numerology <span style="opacity:.5">Magics</span></div>
+  <nav><ul>
+    <li><a href="#calculator">Calculator</a></li>
+    <li><a href="#services">Services</a></li>
+    <li><a href="#packages">Reports</a></li>
+    <li><a href="#booking">Booking</a></li>
+  </ul></nav>
+  <a href="#booking" class="nav-cta">Consultation Book Karein</a>
+</header>
+
+<section class="hero">
+  <div>
+    <span class="eyebrow">Numerology • Vastu • Jyotish</span>
+    <h1>Aapke naam aur ank mein <span>chhupi hui taqdeer</span> ko jaaniye</h1>
+    <p class="lede">Chaldean numerology, vastu aur jyotish ke gyan se — apna naam correction, mobile number correction aur ghar ka vastu theek karwayein. Har sujhav aapke ank shastra ke hisab se.</p>
+    <div class="hero-ctas">
+      <a href="#booking" class="btn-primary">Paid Report Order Karein</a>
+      <a href="#calculator" class="btn-ghost">Apna Ank Nikalein ↓</a>
+    </div>
+  </div>
+
+  <div class="calc-card" id="calculator">
+    <span class="tag">Free Mini Calculator</span>
+    <div class="calc-tabs">
+      <button class="calc-tab active" data-mode="name">Naam</button>
+      <button class="calc-tab" data-mode="mobile">Mobile Number</button>
+    </div>
+    <input type="text" class="calc-input" id="calcInput" placeholder="Apna poora naam likhein">
+    <button class="calc-btn" id="calcBtn">Ank Nikalein</button>
+
+    <div class="calc-result" id="calcResult">
+      <div class="reduction-trail" id="trail"></div>
+      <div class="final-digit" id="finalDigit">5</div>
+      <p class="calc-note">Yeh sirf ek shuruaati jhalak hai. Poora, sateek vishleshan ke liye paid report book karein.</p>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="services">
+  <div class="section-head">
+    <span class="eyebrow">Hamari Seva</span>
+    <h2>Naam se ghar tak, har sthaan par sahi ank</h2>
+    <p>Har service Chaldean ank shastra ke gehre adhyayan par aadharit hai — koi generic sujhav nahi, sirf aapke apne ank ke hisab se sallah.</p>
+  </div>
+  <div class="services">
+    <div class="service">
+      <span class="sv-num">01</span>
+      <h3>Naam Correction</h3>
+      <p>Aapke naam ke akshar-akshar ka ank nikal kar, aisa spelling sujhaya jaata hai jo aapke Life Path se milta ho — career aur pehchaan dono mein.</p>
+    </div>
+    <div class="service">
+      <span class="sv-num">02</span>
+      <h3>Mobile Number Correction</h3>
+      <p>Aapka number roz aapke saath rehta hai — iska total ank aapki urja se match karna zaroori hai. Naya shubh number suggest kiya jaata hai.</p>
+    </div>
+    <div class="service">
+      <span class="sv-num">03</span>
+      <h3>Vastu Sallah</h3>
+      <p>Ghar ya dukaan ke naksha ki disha, dwar aur kamron ka vastu vishleshan — vyavahaarik badlav ke saath, bina todphod ke.</p>
+    </div>
+    <div class="service">
+      <span class="sv-num">04</span>
+      <h3>Jyotish Paramarsh</h3>
+      <p>Janma kundli ke aadhar par graha dasha, shubh muhurat aur jeevan ke bade faislon (vivah, business, property) par margdarshan.</p>
+    </div>
+    <div class="service">
+      <span class="sv-num">05</span>
+      <h3>Business Naam &amp; Launch Date</h3>
+      <p>Naye venture ka naam, logo colour aur launch tithi — sab ank shastra se align, taaki shuruaat hi shubh ho.</p>
+    </div>
+    <div class="service">
+      <span class="sv-num">06</span>
+      <h3>Personalised Paid Report</h3>
+      <p>Ek vistrit PDF report — naam, mobile, janm tithi aur ghar, sab ka combined vishleshan — seedha aapke WhatsApp/email par.</p>
+    </div>
+  </div>
+</section>
+
+<section id="process">
+  <div class="section-head">
+    <span class="eyebrow">Kaise Kaam Karta Hai</span>
+    <h2>Teen aasan charan mein aapka ank vishleshan</h2>
+  </div>
+  <div class="process">
+    <div class="step">
+      <div class="step-num">1</div>
+      <h3>Vivaran Bhejein</h3>
+      <p>Naam, janm tithi, mobile number ya ghar ka naksha booking form ke zariye share karein.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">2</div>
+      <h3>Vishleshan Hota Hai</h3>
+      <p>Chaldean padhati se ank nikal kar, aapke liye sateek sujhav taiyaar kiye jaate hain.</p>
+    </div>
+    <div class="step">
+      <div class="step-num">3</div>
+      <h3>Report Milti Hai</h3>
+      <p>Consultation call ya detailed PDF report ke roop mein aapka poora vishleshan mil jaata hai.</p>
+    </div>
+  </div>
+</section>
+
+<section class="light" id="packages">
+  <div class="section-head">
+    <span class="eyebrow">Paid Reports</span>
+    <h2>Apni zaroorat ke hisab se package chunein</h2>
+  </div>
+  <div class="packages">
+    <div class="pkg">
+      <h3>Naam Ank Report</h3>
+      <div class="price">₹501 <small>/ report</small></div>
+      <ul>
+        <li>Naam ka poora Chaldean vishleshan</li>
+        <li>Sahi spelling ka sujhav</li>
+        <li>Career aur rishton par asar</li>
+        <li>PDF + WhatsApp support</li>
+      </ul>
+      <a href="#booking" class="btn-ghost">Yeh Chunein</a>
+    </div>
+    <div class="pkg featured">
+      <span class="badge">Sabse Popular</span>
+      <h3>Sampoorna Jeevan Report</h3>
+      <div class="price">₹1,501 <small>/ report</small></div>
+      <ul>
+        <li>Naam + Mobile number, dono ka ank</li>
+        <li>Janm kundli ka saraansh</li>
+        <li>Shubh ank, rang aur tithi</li>
+        <li>30 min consultation call</li>
+        <li>PDF + WhatsApp support</li>
+      </ul>
+      <a href="#booking" class="btn-primary">Yeh Chunein</a>
+    </div>
+    <div class="pkg">
+      <h3>Vastu + Business Report</h3>
+      <div class="price">₹2,501 <small>/ report</small></div>
+      <ul>
+        <li>Ghar/dukaan ka vastu vishleshan</li>
+        <li>Business naam aur launch tithi</li>
+        <li>Vyavahaarik upay, bina todphod</li>
+        <li>60 min consultation call</li>
+      </ul>
+      <a href="#booking" class="btn-ghost">Yeh Chunein</a>
+    </div>
+  </div>
+</section>
+
+<section id="booking">
+  <div class="section-head">
+    <span class="eyebrow">Booking</span>
+    <h2>Apna consultation aaj hi book karein</h2>
+  </div>
+  <div class="booking-wrap">
+    <form class="booking-form" onsubmit="event.preventDefault(); alert('Dhanyawad! Aapka vivaran mil gaya hai — hum jald hi WhatsApp par sampark karenge.');">
+      <label for="fname">Poora Naam</label>
+      <input type="text" id="fname" placeholder="Aapka naam" required>
+      <label for="fmobile">Mobile Number</label>
+      <input type="tel" id="fmobile" placeholder="10 ank ka number" required>
+      <label for="fdob">Janm Tithi</label>
+      <input type="date" id="fdob">
+      <label for="fpkg">Package</label>
+      <select id="fpkg">
+        <option>Naam Ank Report — ₹501</option>
+        <option>Sampoorna Jeevan Report — ₹1,501</option>
+        <option>Vastu + Business Report — ₹2,501</option>
+        <option>Pehle baat karni hai</option>
+      </select>
+      <label for="fmsg">Sandesh (optional)</label>
+      <textarea id="fmsg" rows="3" placeholder="Apni zaroorat batayein..."></textarea>
+      <button type="submit" class="btn-primary">Booking Bhejein</button>
+    </form>
+    <div>
+      <ul class="why-list">
+        <li><span class="why-num num">01</span><span>Har sujhav Chaldean ank shastra ke gehre adhyayan par aadharit — koi anuman nahi.</span></li>
+        <li><span class="why-num num">02</span><span>Naam se lekar vastu tak, sab ek hi jagah — alag-alag jyotishi dhoondhne ki zaroorat nahi.</span></li>
+        <li><span class="why-num num">03</span><span>WhatsApp par seedha sampark, report ghar baithe milti hai.</span></li>
+        <li><span class="why-num num">04</span><span>Business owners ke liye special: naam, launch date aur branding sab ank se milta hua.</span></li>
+      </ul>
+    </div>
+  </div>
+</section>
+
+<footer>
+  <div class="foot-grid">
+    <div class="foot-brand">
+      <div class="brand"><span class="om">ॐ</span> Viraat Numerology Magics</div>
+      <p style="opacity:.7; margin-top:10px; max-width:32ch; font-size:0.9rem;">viraatnumerologymagics.money</p>
+    </div>
+    <div class="foot-links">
+      <div>
+        <h4>Services</h4>
+        <ul>
+          <li>Naam Correction</li>
+          <li>Mobile Correction</li>
+          <li>Vastu</li>
+          <li>Jyotish</li>
+        </ul>
+      </div>
+      <div>
+        <h4>Company</h4>
+        <ul>
+          <li><a href="#calculator">Calculator</a></li>
+          <li><a href="#packages">Reports</a></li>
+          <li><a href="#booking">Booking</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <hr class="rule">
+  <div class="foot-bottom">
+    <span>© 2026 Viraat Numerology Magics. Sarv Adhikar Surakshit.</span>
+    <span>🔱 Har Har Mahadev</span>
+  </div>
+</footer>
+
+<script>
+  // Chaldean numerology chart
+  const chaldeanMap = {
+    a:1,i:1,j:1,q:1,y:1,
+    b:2,k:2,r:2,
+    c:3,g:3,l:3,s:3,
+    d:4,m:4,t:4,
+    e:5,h:5,n:5,x:5,
+    u:6,v:6,w:6,
+    o:7,z:7,
+    f:8,p:8
+  };
+
+  function reduceNumber(n){
+    const trail = [n];
+    while(n > 9){
+      n = String(n).split('').reduce((a,b)=>a+parseInt(b,10),0);
+      trail.push(n);
+    }
+    return trail;
+  }
+
+  function calcNameValue(name){
+    let total = 0;
+    for(const ch of name.toLowerCase()){
+      if(chaldeanMap[ch] !== undefined) total += chaldeanMap[ch];
+    }
+    return total;
+  }
+
+  let mode = 'name';
+  const tabs = document.querySelectorAll('.calc-tab');
+  const input = document.getElementById('calcInput');
+  tabs.forEach(tab=>{
+    tab.addEventListener('click', ()=>{
+      tabs.forEach(t=>t.classList.remove('active'));
+      tab.classList.add('active');
+      mode = tab.dataset.mode;
+      input.placeholder = mode === 'name' ? 'Apna poora naam likhein' : 'Apna 10 ank ka mobile number likhein';
+      document.getElementById('calcResult').classList.remove('show');
+    });
+  });
+
+  document.getElementById('calcBtn').addEventListener('click', ()=>{
+    const val = input.value.trim();
+    if(!val) return;
+    let startNumber;
+    if(mode === 'name'){
+      startNumber = calcNameValue(val);
+      if(startNumber === 0) return;
+    } else {
+      const digits = val.replace(/\D/g,'');
+      if(!digits) return;
+      startNumber = digits.split('').reduce((a,b)=>a+parseInt(b,10),0);
+    }
+    const trail = reduceNumber(startNumber);
+    const trailEl = document.getElementById('trail');
+    trailEl.innerHTML = '';
+    trail.forEach((num, idx)=>{
+      if(idx > 0){
+        const arrow = document.createElement('span');
+        arrow.className = 'arrow';
+        arrow.textContent = '→';
+        arrow.style.animationDelay = (idx*0.15)+'s';
+        trailEl.appendChild(arrow);
+      }
+      const s = document.createElement('span');
+      s.textContent = num;
+      s.style.animationDelay = (idx*0.15)+'s';
+      trailEl.appendChild(s);
+    });
+    document.getElementById('finalDigit').textContent = trail[trail.length-1];
+    document.getElementById('calcResult').classList.add('show');
+  });
+</script>
+
+</body>
+</html>
