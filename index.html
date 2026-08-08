@@ -52,8 +52,9 @@
     display:flex; align-items:center; justify-content:space-between;
     padding: 18px 6vw;
     background: var(--header-bg);
-    backdrop-filter: blur(8px);
+    backdrop-filter: blur(10px);
     border-bottom: 1px solid var(--line);
+    box-shadow: 0 4px 24px rgba(43,38,32,0.05);
   }
   .brand{ display:flex; align-items:center; gap:10px; font-size:1.3rem; }
   .brand .om{ color:var(--gold); font-size:1.5rem; }
@@ -61,10 +62,14 @@
   nav a{ text-decoration:none; opacity:0.85; transition:opacity .2s, color .2s; }
   nav a:hover{ opacity:1; color:var(--blue); }
   .nav-cta{
-    background:var(--gold); color:var(--ink); padding:9px 20px;
-    border-radius:2px; text-decoration:none; font-weight:600; font-size:0.9rem;
-    font-family:'Mukta',sans-serif;
+    background:linear-gradient(135deg, #E4C468, var(--gold)); color:var(--ink); padding:10px 22px;
+    border-radius:4px; text-decoration:none; font-weight:700; font-size:0.9rem;
+    font-family:'Mukta',sans-serif; letter-spacing:0.3px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -2px 5px rgba(120,90,10,0.2), 0 4px 14px rgba(201,162,39,0.35);
+    transition: transform .18s ease, box-shadow .18s ease;
   }
+  .nav-cta:hover{ transform:translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.5), inset 0 -2px 5px rgba(120,90,10,0.2), 0 8px 20px rgba(201,162,39,0.45); }
+  .nav-cta:active{ transform:translateY(1px); box-shadow: inset 0 2px 5px rgba(120,90,10,0.3), 0 3px 10px rgba(201,162,39,0.3); }
   .menu-btn{ display:none; background:none; border:none; color:var(--ink); font-size:1.5rem; cursor:pointer; }
 
   /* ---------- hero ---------- */
@@ -91,26 +96,49 @@
   }
   .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
   .btn-primary{
-    background:var(--blue); color:#fff; padding:14px 28px;
-    border:none; border-radius:2px; font-size:1rem; font-weight:600; cursor:pointer;
+    background:linear-gradient(135deg, #4A85AB, var(--blue)); color:#fff; padding:15px 30px;
+    border:none; border-radius:4px; font-size:1rem; font-weight:600; cursor:pointer;
     text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
-    transition: transform .15s ease, background .2s ease;
+    letter-spacing:0.3px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -3px 6px rgba(0,0,0,0.15), 0 6px 20px rgba(61,110,143,0.28);
+    transition: transform .15s ease, box-shadow .15s ease, background .2s ease;
   }
-  .btn-primary:hover{ background:var(--blue-dark); transform:translateY(-2px); }
+  .btn-primary:hover{ background:linear-gradient(135deg, var(--blue), var(--blue-dark)); transform:translateY(-3px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.35), inset 0 -3px 6px rgba(0,0,0,0.15), 0 10px 26px rgba(61,110,143,0.38); }
+  .btn-primary:active{ transform:translateY(1px); box-shadow: inset 0 2px 6px rgba(0,0,0,0.25), 0 3px 10px rgba(61,110,143,0.28); }
   .btn-ghost{
-    background:transparent; color:var(--ink); padding:14px 24px;
+    background:#fff; color:var(--ink); padding:14px 24px;
     border:1px solid var(--line); border-radius:2px; font-size:1rem; cursor:pointer;
     text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
+    transition: transform .18s ease, border-color .2s ease, box-shadow .2s ease;
   }
-  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); transform:translateY(-2px); box-shadow: 0 6px 18px rgba(201,162,39,0.18); }
 
   /* ---------- calculator (signature element) ---------- */
   .calc-card{
-    background: linear-gradient(160deg, rgba(201,162,39,0.10), rgba(61,110,143,0.08));
-    border:1px solid var(--line);
-    border-radius:6px;
-    padding: 34px;
+    background: linear-gradient(160deg, rgba(255,255,255,0.9), rgba(233,243,250,0.7));
+    border:1px solid rgba(201,162,39,0.35);
+    border-top:1px solid rgba(255,255,255,0.9);
+    border-radius:14px;
+    padding: 38px;
     position:relative;
+    transform: perspective(1200px) rotateX(3deg) rotateY(-2deg);
+    transform-style: preserve-3d;
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.6) inset,
+      0 -30px 60px rgba(61,110,143,0.06) inset,
+      0 30px 25px -15px rgba(43,38,32,0.18),
+      0 55px 70px -25px rgba(43,38,32,0.20),
+      0 8px 20px rgba(201,162,39,0.12);
+    transition: transform .4s ease, box-shadow .4s ease;
+  }
+  .calc-card:hover{
+    transform: perspective(1200px) rotateX(0deg) rotateY(0deg) translateY(-4px);
+    box-shadow:
+      0 2px 0 rgba(255,255,255,0.6) inset,
+      0 -30px 60px rgba(61,110,143,0.06) inset,
+      0 40px 30px -15px rgba(43,38,32,0.20),
+      0 65px 80px -25px rgba(43,38,32,0.24),
+      0 10px 26px rgba(201,162,39,0.16);
   }
   .calc-card .tag{
     font-family:'Rajdhani',sans-serif; text-transform:uppercase; letter-spacing:2px;
@@ -129,11 +157,14 @@
   }
   .calc-input::placeholder{ color:rgba(43,38,32,0.4); }
   .calc-btn{
-    width:100%; padding:13px; background:var(--blue); color:#fff; border:none;
-    border-radius:3px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:'Mukta',sans-serif;
+    width:100%; padding:14px; background:linear-gradient(135deg, #4A85AB, var(--blue)); color:#fff; border:none;
+    border-radius:4px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:'Mukta',sans-serif;
     letter-spacing:0.5px;
+    box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -3px 6px rgba(0,0,0,0.15), 0 6px 18px rgba(61,110,143,0.28);
+    transition: transform .15s ease, box-shadow .15s ease;
   }
-  .calc-btn:hover{ background:var(--blue-dark); }
+  .calc-btn:hover{ background:linear-gradient(135deg, var(--blue), var(--blue-dark)); transform:translateY(-2px); box-shadow: inset 0 1px 0 rgba(255,255,255,0.3), inset 0 -3px 6px rgba(0,0,0,0.15), 0 10px 24px rgba(61,110,143,0.36); }
+  .calc-btn:active{ transform:translateY(1px); box-shadow: inset 0 2px 6px rgba(0,0,0,0.25), 0 3px 10px rgba(61,110,143,0.28); }
   .calc-result{
     margin-top:26px; display:none; text-align:center;
   }
@@ -150,31 +181,48 @@
   .reduction-trail .arrow{ color:var(--gold); opacity:0.7; }
   @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
   .final-digit{
-    width:110px; height:110px; margin:0 auto 14px; border-radius:50%;
+    width:114px; height:114px; margin:0 auto 14px; border-radius:50%;
     border:2px solid var(--gold);
     display:flex; align-items:center; justify-content:center;
     font-family:'Rajdhani',sans-serif; font-size:3rem; font-weight:700; color:var(--gold);
-    background:#fff;
-    box-shadow: 0 0 0 6px rgba(201,162,39,0.10);
+    background: radial-gradient(circle at 32% 28%, #ffffff 0%, #fdfaf2 35%, #f5ecd4 70%, #efe1bb 100%);
+    box-shadow:
+      inset 0 3px 6px rgba(255,255,255,0.9),
+      inset 0 -8px 14px rgba(201,162,39,0.25),
+      0 0 0 8px rgba(201,162,39,0.10),
+      0 14px 34px rgba(201,162,39,0.24),
+      0 4px 10px rgba(43,38,32,0.12);
+    text-shadow: 0 1px 1px rgba(255,255,255,0.6), 0 2px 4px rgba(201,162,39,0.3);
     animation: pulseGlow 2.4s ease-in-out infinite;
   }
   @keyframes pulseGlow{
-    0%,100%{ box-shadow:0 0 0 6px rgba(201,162,39,0.10); }
-    50%{ box-shadow:0 0 0 12px rgba(201,162,39,0.16); }
+    0%,100%{ box-shadow: inset 0 3px 6px rgba(255,255,255,0.9), inset 0 -8px 14px rgba(201,162,39,0.25), 0 0 0 8px rgba(201,162,39,0.10), 0 14px 34px rgba(201,162,39,0.24), 0 4px 10px rgba(43,38,32,0.12); }
+    50%{ box-shadow: inset 0 3px 6px rgba(255,255,255,0.9), inset 0 -8px 14px rgba(201,162,39,0.3), 0 0 0 14px rgba(201,162,39,0.16), 0 18px 42px rgba(201,162,39,0.3), 0 6px 14px rgba(43,38,32,0.16); }
   }
   .calc-note{ font-size:0.88rem; opacity:0.75; max-width:34ch; margin:0 auto 16px; }
+
+  /* ---------- promo banner ---------- */
+  .promo-banner{
+    position:relative; z-index:1;
+    padding: 0 6vw 20px;
+  }
+  .promo-banner img{
+    width:100%; border-radius:14px;
+    box-shadow: 0 30px 60px rgba(43,38,32,0.16), 0 8px 20px rgba(201,162,39,0.14);
+    border: 1px solid rgba(201,162,39,0.25);
+  }
 
   /* ---------- section shell ---------- */
   section{ position:relative; z-index:1; padding: 90px 6vw; }
   .section-head{ max-width:640px; margin-bottom:50px; }
   .section-head .eyebrow{ margin-bottom:14px; }
-  .section-head h2{ font-size:clamp(1.9rem, 3vw, 2.6rem); }
+  .section-head h2{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:clamp(1.9rem, 3vw, 2.6rem); letter-spacing:0.3px; }
   .section-head p{ opacity:0.8; margin-top:14px; font-size:1.02rem; }
   .light{ background:var(--bg-alt); color:var(--ink); }
   .light .eyebrow{ border-color:rgba(43,38,32,0.2); background:#fff; }
   .light hr.rule{ border-color:rgba(43,38,32,0.15); }
 
-  hr.rule{ border:none; border-top:1px solid var(--line); margin: 26px 0; }
+  hr.rule{ border:none; height:1px; background: linear-gradient(90deg, transparent, var(--gold), transparent); margin: 26px 0; }
 
   /* ---------- services ---------- */
   .services{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(43,38,32,0.15); }
@@ -194,9 +242,11 @@
     background: var(--line);
   }
   .step-num{
-    width:44px; height:44px; border-radius:50%; border:1px solid var(--gold); color:var(--gold);
+    width:46px; height:46px; border-radius:50%; border:1px solid var(--gold); color:var(--gold);
     display:flex; align-items:center; justify-content:center; font-family:'Rajdhani',sans-serif;
-    font-weight:700; margin-bottom:18px; position:relative; z-index:1; background:#fff;
+    font-weight:700; margin-bottom:18px; position:relative; z-index:1;
+    background: radial-gradient(circle at 32% 28%, #ffffff 0%, #faf5e6 60%, #f0e6c8 100%);
+    box-shadow: inset 0 2px 4px rgba(255,255,255,0.9), inset 0 -4px 8px rgba(201,162,39,0.2), 0 6px 16px rgba(201,162,39,0.16);
   }
   .step h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.15rem; margin-bottom:8px; letter-spacing:0.3px; }
   .step p{ font-size:0.92rem; opacity:0.8; max-width:26ch; }
@@ -204,10 +254,26 @@
   /* ---------- packages ---------- */
   .packages{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   .pkg{
-    border:1px solid var(--line); border-radius:6px; padding:32px 28px; position:relative;
+    border:1px solid var(--line); border-radius:10px; padding:34px 30px; position:relative;
     display:flex; flex-direction:column; background:#fff;
+    box-shadow: 0 4px 10px rgba(43,38,32,0.05), 0 16px 34px rgba(43,38,32,0.08);
+    transform: perspective(1000px) rotateX(0deg);
+    transition: transform .35s ease, box-shadow .35s ease;
+    transform-style: preserve-3d;
   }
-  .pkg.featured{ border-color:var(--gold); background:rgba(201,162,39,0.08); }
+  .pkg:hover{
+    transform: perspective(1000px) rotateX(4deg) translateY(-8px) scale(1.02);
+    box-shadow: 0 10px 16px rgba(43,38,32,0.07), 0 30px 50px rgba(43,38,32,0.16);
+  }
+  .pkg.featured{
+    border-color:var(--gold);
+    background:linear-gradient(160deg, rgba(201,162,39,0.10), #fff 60%);
+    box-shadow: 0 6px 14px rgba(201,162,39,0.14), 0 22px 48px rgba(201,162,39,0.24);
+  }
+  .pkg.featured:hover{
+    transform: perspective(1000px) rotateX(4deg) translateY(-10px) scale(1.03);
+    box-shadow: 0 10px 18px rgba(201,162,39,0.18), 0 34px 60px rgba(201,162,39,0.32);
+  }
   .pkg .badge{
     position:absolute; top:-13px; right:24px; background:var(--blue); color:#fff;
     font-size:0.72rem; padding:5px 12px; border-radius:20px; font-family:'Rajdhani',sans-serif; letter-spacing:1px;
@@ -301,6 +367,10 @@
     </div>
   </div>
 </section>
+
+<div class="promo-banner">
+  <img src="naam-correction-banner.png" alt="Viraat Numerology - Naam Correction Service">
+</div>
 
 <section class="light" id="services">
   <div class="section-head">
@@ -449,7 +519,8 @@
   <div class="foot-grid">
     <div class="foot-brand">
       <div class="brand"><span class="om">ॐ</span> Viraat Numerology Magics</div>
-      <p style="opacity:.7; margin-top:10px; max-width:32ch; font-size:0.9rem;">viraatnumerologymagics.money</p>
+      <p style="opacity:.85; margin-top:10px; font-size:0.95rem; font-weight:600;">Consultant: Kommal N Aggrawal</p>
+      <p style="opacity:.7; margin-top:4px; max-width:32ch; font-size:0.9rem;">viraatnumerologymagics.money</p>
     </div>
     <div class="foot-links">
       <div>
