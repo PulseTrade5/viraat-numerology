@@ -373,6 +373,28 @@
   .stars-row{ color:var(--gold); font-size:0.95rem; letter-spacing:2px; }
   .testi-quote{ font-size:0.92rem; opacity:0.85; line-height:1.6; }
 
+  /* ---------- review form ---------- */
+  .review-cta{ text-align:center; margin-top:40px; }
+  .review-form{
+    display:none; flex-direction:column; gap:14px;
+    max-width:460px; margin:26px auto 0;
+    background:#fff; border:1px solid var(--line); border-radius:14px;
+    padding:30px 28px;
+    box-shadow: 0 16px 40px rgba(43,38,32,0.08);
+  }
+  .review-form.open{ display:flex; }
+  .review-form h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.2rem; }
+  .review-sub{ font-size:0.85rem; opacity:0.7; margin-top:-8px; }
+  .review-form label{ font-size:0.85rem; opacity:0.7; margin-bottom:-8px; }
+  .review-form input, .review-form textarea{
+    padding:12px 14px; border-radius:6px; border:1px solid rgba(43,38,32,0.25);
+    font-family:'Mukta',sans-serif; font-size:0.95rem; color:var(--ink);
+  }
+  .star-picker{ font-size:1.8rem; letter-spacing:6px; cursor:pointer; }
+  .star-picker .star{ color:rgba(43,38,32,0.2); transition: color .15s ease, transform .15s ease; }
+  .star-picker .star.active{ color:var(--gold); }
+  .star-picker .star:hover{ transform:scale(1.15); }
+
   /* ---------- faq ---------- */
   .faq-list{ max-width:760px; margin:0 auto; }
   .faq-item{
@@ -686,6 +708,28 @@
       <p class="testi-quote">Naye business ka naam aur launch date suggest ki gayi thi — pehle hi mahine se growth dikhi. Consultation bahut professional tha.</p>
     </div>
   </div>
+
+  <div class="review-cta">
+    <button id="openReviewBtn" class="btn-primary" type="button">✦ Apna Review Dein</button>
+  </div>
+
+  <div class="review-form" id="reviewForm">
+    <h3>Apna Anubhav Share Karein</h3>
+    <p class="review-sub">Aapka review humein WhatsApp par milega — hum ise dhanyawaad ke saath website par bhi laga denge.</p>
+    <label for="revName">Aapka Naam</label>
+    <input type="text" id="revName" placeholder="Jaise: Priya Sharma">
+    <label>Rating</label>
+    <div class="star-picker" id="starPicker">
+      <span class="star" data-value="1">★</span>
+      <span class="star" data-value="2">★</span>
+      <span class="star" data-value="3">★</span>
+      <span class="star" data-value="4">★</span>
+      <span class="star" data-value="5">★</span>
+    </div>
+    <label for="revText">Aapka Review</label>
+    <textarea id="revText" rows="3" placeholder="Aapka anubhav yahan likhein..."></textarea>
+    <button id="sendReviewBtn" class="btn-primary" type="button">WhatsApp par Bhejein</button>
+  </div>
 </section>
 
 <section class="light reveal" id="faq">
@@ -937,6 +981,45 @@
       revealEls.forEach(el => el.classList.add('in-view'));
     }
   }catch(e){ console.error('Reveal effect error:', e); document.documentElement.classList.remove('js-ready'); }
+
+  // ---------- review form ----------
+  try{
+    const openReviewBtn = document.getElementById('openReviewBtn');
+    const reviewForm = document.getElementById('reviewForm');
+    const starPicker = document.getElementById('starPicker');
+    const stars = starPicker.querySelectorAll('.star');
+    const sendReviewBtn = document.getElementById('sendReviewBtn');
+    let selectedRating = 0;
+
+    openReviewBtn.addEventListener('click', ()=>{
+      reviewForm.classList.toggle('open');
+      if(reviewForm.classList.contains('open')){
+        reviewForm.scrollIntoView({ behavior:'smooth', block:'center' });
+      }
+    });
+
+    stars.forEach(star=>{
+      star.addEventListener('click', ()=>{
+        selectedRating = parseInt(star.dataset.value, 10);
+        stars.forEach(s=>{
+          s.classList.toggle('active', parseInt(s.dataset.value, 10) <= selectedRating);
+        });
+      });
+    });
+
+    sendReviewBtn.addEventListener('click', ()=>{
+      const name = document.getElementById('revName').value.trim();
+      const text = document.getElementById('revText').value.trim();
+      if(!name || !text || selectedRating === 0){
+        alert('Kripya apna naam, rating aur review bharein.');
+        return;
+      }
+      const stars5 = '★'.repeat(selectedRating) + '☆'.repeat(5 - selectedRating);
+      const message = `Naya Review ✦\n\nNaam: ${name}\nRating: ${stars5} (${selectedRating}/5)\nReview: ${text}`;
+      const waUrl = 'https://wa.me/918373931251?text=' + encodeURIComponent(message);
+      window.open(waUrl, '_blank');
+    });
+  }catch(e){ console.error('Review form error:', e); }
 
   // ---------- chat assistant ----------
   try{
