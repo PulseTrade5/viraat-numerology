@@ -373,6 +373,59 @@
   .stars-row{ color:var(--gold); font-size:0.95rem; letter-spacing:2px; }
   .testi-quote{ font-size:0.92rem; opacity:0.85; line-height:1.6; }
 
+  /* ---------- urgency ribbon ---------- */
+  .urgency-ribbon{
+    text-align:center; max-width:640px; margin:0 auto 34px;
+    background: linear-gradient(135deg, #FDF1D6, #F6E2A0);
+    border:1px solid rgba(201,162,39,0.5);
+    color:#5a4413; font-weight:600; font-size:0.88rem;
+    padding:12px 20px; border-radius:30px;
+    box-shadow: 0 8px 20px rgba(201,162,39,0.2);
+    animation: ribbonPulse 2.5s ease-in-out infinite;
+  }
+  @keyframes ribbonPulse{
+    0%,100%{ box-shadow: 0 8px 20px rgba(201,162,39,0.2); }
+    50%{ box-shadow: 0 10px 28px rgba(201,162,39,0.35); }
+  }
+
+  /* ---------- sticky mobile cta ---------- */
+  .sticky-cta{
+    display:none;
+    position:fixed; left:0; right:0; bottom:0; z-index:70;
+    padding:12px 16px; background:rgba(255,255,255,0.95); backdrop-filter:blur(8px);
+    border-top:1px solid var(--line); box-shadow: 0 -8px 24px rgba(43,38,32,0.12);
+  }
+  .sticky-cta a{
+    display:block; text-align:center; width:100%;
+    background:linear-gradient(135deg, #4A85AB, var(--blue)); color:#fff;
+    padding:14px; border-radius:30px; font-weight:700; text-decoration:none;
+    font-family:'Mukta',sans-serif; letter-spacing:0.3px;
+    box-shadow: 0 8px 20px rgba(61,110,143,0.3);
+    animation: ctaPulse 2s ease-in-out infinite;
+  }
+  @keyframes ctaPulse{
+    0%,100%{ transform:scale(1); }
+    50%{ transform:scale(1.03); }
+  }
+  @media (max-width: 700px){
+    .sticky-cta{ display:block; }
+    body{ padding-bottom:74px; }
+    .float-whatsapp{ bottom:90px; }
+    .chat-toggle{ bottom:90px; }
+    .chat-panel{ bottom:158px; }
+  }
+
+  /* ---------- sparkle burst ---------- */
+  .sparkle{
+    position:fixed; z-index:200; pointer-events:none;
+    font-size:1.2rem; color:var(--gold);
+    animation: sparkleFly 0.9s ease-out forwards;
+  }
+  @keyframes sparkleFly{
+    0%{ opacity:1; transform:translate(0,0) scale(0.6) rotate(0deg); }
+    100%{ opacity:0; transform:translate(var(--sx), var(--sy)) scale(1.3) rotate(180deg); }
+  }
+
   /* ---------- review form ---------- */
   .review-cta{ text-align:center; margin-top:40px; }
   .review-form{
@@ -524,7 +577,7 @@
 <div class="stars"></div>
 
 <header>
-  <div class="brand"><span class="om">ॐ</span> Viraat Numerology <span class="brand-sub" style="opacity:.5">Magics</span></div>
+  <div class="brand"><span class="om" style="font-size:0.85rem;">श्री गणेशाय नमः</span> Viraat Numerology <span class="brand-sub" style="opacity:.5">Magics</span></div>
   <nav><ul>
     <li><a href="#calculator">Calculator</a></li>
     <li><a href="#services">Services</a></li>
@@ -548,7 +601,7 @@
   <div class="calc-card" id="calculator">
     <div class="trust-coin">
       <div class="coin-inner">
-        <div class="coin-face front">ॐ<span style="font-size:0.55rem; margin-top:2px;">TRUSTED</span></div>
+        <div class="coin-face front" style="font-size:0.42rem; text-align:center; line-height:1.2; padding:6px;">श्री गणेशाय नमः</div>
         <div class="coin-face back">5000+<br>KHUSH<br>GRAHAK</div>
       </div>
     </div>
@@ -569,13 +622,13 @@
 </section>
 
 <div class="trust-strip reveal">
-  <div class="trust-item"><span class="trust-num">5000+</span><span class="trust-label">Khush Grahak</span></div>
+  <div class="trust-item"><span class="trust-num" data-count="5000" data-suffix="+">0</span><span class="trust-label">Khush Grahak</span></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-num">4.9★</span><span class="trust-label">Grahak Rating</span></div>
+  <div class="trust-item"><span class="trust-num" data-count="4.9" data-suffix="★">0</span><span class="trust-label">Grahak Rating</span></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-num">10+</span><span class="trust-label">Saal ka Anubhav</span></div>
+  <div class="trust-item"><span class="trust-num" data-count="10" data-suffix="+">0</span><span class="trust-label">Saal ka Anubhav</span></div>
   <div class="trust-divider"></div>
-  <div class="trust-item"><span class="trust-num">100%</span><span class="trust-label">Chaldean Method</span></div>
+  <div class="trust-item"><span class="trust-num" data-count="100" data-suffix="%">0</span><span class="trust-label">Chaldean Method</span></div>
 </div>
 
 <div class="promo-banner">
@@ -625,6 +678,7 @@
 </section>
 
 <section class="light reveal" id="packages">
+  <div class="urgency-ribbon">🔥 Is hafte special offer — Sampoorna Jeevan Report ke saath FREE 15-min consultation call!</div>
   <div class="section-head">
     <span class="eyebrow">Paid Reports</span>
     <h2>Apni zaroorat ke hisab se package chunein</h2>
@@ -639,7 +693,7 @@
         <li>Career aur rishton par asar</li>
         <li>PDF + WhatsApp support</li>
       </ul>
-      <a href="#booking" class="btn-ghost">Yeh Chunein</a>
+      <a href="#booking" class="btn-ghost pkg-choose">Yeh Chunein</a>
     </div>
     <div class="pkg featured">
       <span class="badge">Sabse Popular</span>
@@ -652,7 +706,7 @@
         <li>30 min consultation call</li>
         <li>PDF + WhatsApp support</li>
       </ul>
-      <a href="#booking" class="btn-primary">Yeh Chunein</a>
+      <a href="#booking" class="btn-primary pkg-choose">Yeh Chunein</a>
     </div>
     <div class="pkg">
       <h3>Vastu + Business Report</h3>
@@ -663,7 +717,7 @@
         <li>Vyavahaarik upay, bina todphod</li>
         <li>60 min consultation call</li>
       </ul>
-      <a href="#booking" class="btn-ghost">Yeh Chunein</a>
+      <a href="#booking" class="btn-ghost pkg-choose">Yeh Chunein</a>
     </div>
   </div>
 </section>
@@ -803,7 +857,7 @@
 <footer>
   <div class="foot-grid">
     <div class="foot-brand">
-      <div class="brand"><span class="om">ॐ</span> Viraat Numerology Magics</div>
+      <div class="brand"><span class="om" style="font-size:0.85rem;">श्री गणेशाय नमः</span> Viraat Numerology Magics</div>
       <p style="opacity:.85; margin-top:10px; font-size:0.95rem; font-weight:600;">Consultant: Kommal N Aggrawal</p>
       <p style="opacity:.7; margin-top:4px; max-width:32ch; font-size:0.9rem;">viraatnumerologymagics.money</p>
     </div>
@@ -833,6 +887,10 @@
     <span>🔱 Har Har Mahadev</span>
   </div>
 </footer>
+
+<div class="sticky-cta">
+  <a href="#booking">✦ Apna Report Book Karein</a>
+</div>
 
 <a class="float-whatsapp" href="https://wa.me/918373931251?text=Namaste%2C%20mujhe%20apni%20numerology%20report%20ke%20baare%20mein%20jaanna%20hai" target="_blank" rel="noopener" aria-label="WhatsApp par baat karein">
   <svg width="28" height="28" viewBox="0 0 24 24" fill="currentColor"><path d="M12.04 2C6.58 2 2.13 6.45 2.13 11.91c0 1.75.46 3.45 1.32 4.95L2 22l5.25-1.38c1.45.79 3.08 1.21 4.79 1.21h.01c5.46 0 9.91-4.45 9.91-9.91C21.96 6.45 17.51 2 12.04 2zm5.83 14.14c-.24.68-1.4 1.31-1.93 1.35-.5.05-1.02.24-3.44-.72-2.9-1.15-4.77-4.02-4.92-4.2-.14-.19-1.18-1.57-1.18-2.99 0-1.42.75-2.12 1.02-2.41.26-.29.57-.36.77-.36.19 0 .38 0 .55.01.18.01.41-.07.64.49.24.58.81 2 .88 2.14.07.14.12.31.02.5-.1.19-.15.31-.29.48-.15.17-.31.38-.44.51-.15.15-.3.31-.13.6.17.29.75 1.24 1.62 2.01 1.11.99 2.05 1.3 2.34 1.44.29.15.46.13.63-.08.17-.2.72-.84.91-1.13.19-.29.38-.24.63-.14.26.1 1.65.78 1.93.92.29.14.48.22.55.34.07.13.07.72-.17 1.4z"/></svg>
@@ -981,6 +1039,58 @@
       revealEls.forEach(el => el.classList.add('in-view'));
     }
   }catch(e){ console.error('Reveal effect error:', e); document.documentElement.classList.remove('js-ready'); }
+
+  // ---------- count-up trust numbers ----------
+  try{
+    const countEls = document.querySelectorAll('.trust-num[data-count]');
+    const countObserver = new IntersectionObserver((entries)=>{
+      entries.forEach(entry=>{
+        if(entry.isIntersecting){
+          const el = entry.target;
+          const target = parseFloat(el.dataset.count);
+          const suffix = el.dataset.suffix || '';
+          const isDecimal = target % 1 !== 0;
+          const duration = 1400;
+          const startTime = performance.now();
+          function tick(now){
+            const progress = Math.min((now - startTime) / duration, 1);
+            const eased = 1 - Math.pow(1 - progress, 3);
+            const current = target * eased;
+            el.textContent = (isDecimal ? current.toFixed(1) : Math.round(current)) + suffix;
+            if(progress < 1) requestAnimationFrame(tick);
+          }
+          requestAnimationFrame(tick);
+          countObserver.unobserve(el);
+        }
+      });
+    }, { threshold: 0.5 });
+    countEls.forEach(el => countObserver.observe(el));
+  }catch(e){ console.error('Count-up error:', e); }
+
+  // ---------- sparkle burst on package select ----------
+  try{
+    document.querySelectorAll('.pkg-choose').forEach(btn=>{
+      btn.addEventListener('click', (e)=>{
+        const rect = btn.getBoundingClientRect();
+        const originX = rect.left + rect.width / 2;
+        const originY = rect.top + rect.height / 2;
+        const symbols = ['✦','✧','★','⋆'];
+        for(let i = 0; i < 10; i++){
+          const s = document.createElement('span');
+          s.className = 'sparkle';
+          s.textContent = symbols[Math.floor(Math.random() * symbols.length)];
+          const angle = Math.random() * Math.PI * 2;
+          const dist = 60 + Math.random() * 60;
+          s.style.setProperty('--sx', Math.cos(angle) * dist + 'px');
+          s.style.setProperty('--sy', Math.sin(angle) * dist + 'px');
+          s.style.left = originX + 'px';
+          s.style.top = originY + 'px';
+          document.body.appendChild(s);
+          setTimeout(()=> s.remove(), 950);
+        }
+      });
+    });
+  }catch(e){ console.error('Sparkle effect error:', e); }
 
   // ---------- review form ----------
   try{
