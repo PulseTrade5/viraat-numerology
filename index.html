@@ -205,11 +205,15 @@
   .promo-banner{
     position:relative; z-index:1;
     padding: 0 6vw 20px;
+    display:grid; grid-template-columns:1fr 1fr; gap:24px;
   }
   .promo-banner img{
     width:100%; border-radius:14px;
     box-shadow: 0 30px 60px rgba(43,38,32,0.16), 0 8px 20px rgba(201,162,39,0.14);
     border: 1px solid rgba(201,162,39,0.25);
+  }
+  @media (max-width: 860px){
+    .promo-banner{ grid-template-columns:1fr; }
   }
 
   /* ---------- section shell ---------- */
@@ -370,6 +374,7 @@
 
 <div class="promo-banner">
   <img src="naam-correction-banner.png" alt="Viraat Numerology - Naam Correction Service">
+  <img src="mobile-number-banner.png" alt="Viraat Numerology - Mobile Number Correction Service">
 </div>
 
 <section class="light" id="services">
