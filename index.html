@@ -240,6 +240,12 @@
     width:100%; border-radius:14px;
     box-shadow: 0 30px 60px rgba(43,38,32,0.16), 0 8px 20px rgba(201,162,39,0.14);
     border: 1px solid rgba(201,162,39,0.25);
+    transition: transform .25s ease, box-shadow .25s ease;
+  }
+  .promo-link{ display:block; cursor:pointer; }
+  .promo-link:hover img{
+    transform: translateY(-6px);
+    box-shadow: 0 40px 70px rgba(43,38,32,0.22), 0 10px 26px rgba(201,162,39,0.2);
   }
 
   /* ---------- section shell ---------- */
@@ -474,11 +480,11 @@
 </div>
 
 <div class="promo-banner">
-  <img src="naam-correction-banner.png" alt="Viraat Numerology - Naam Correction Service">
-  <img src="mobile-number-banner.png" alt="Viraat Numerology - Mobile Number Correction Service">
-  <img src="vastu-banner.png" alt="Viraat Numerology - Vastu Sallah Service">
-  <img src="jyotish-banner.png" alt="Viraat Numerology - Jyotish Paramarsh Service">
-  <img src="business-naam-banner.png" alt="Viraat Numerology - Business Naam and Launch Date Service">
+  <a href="#booking" class="promo-link"><img src="naam-correction-banner.png" alt="Viraat Numerology - Naam Correction Service"></a>
+  <a href="#booking" class="promo-link"><img src="mobile-number-banner.png" alt="Viraat Numerology - Mobile Number Correction Service"></a>
+  <a href="#booking" class="promo-link"><img src="vastu-banner.png" alt="Viraat Numerology - Vastu Sallah Service"></a>
+  <a href="#booking" class="promo-link"><img src="jyotish-banner.png" alt="Viraat Numerology - Jyotish Paramarsh Service"></a>
+  <a href="#booking" class="promo-link"><img src="business-naam-banner.png" alt="Viraat Numerology - Business Naam and Launch Date Service"></a>
 </div>
 
 <section class="light reveal" id="services">
