@@ -8,19 +8,20 @@
 <link href="https://fonts.googleapis.com/css2?family=Yatra+One&family=Rajdhani:wght@500;600;700&family=Mukta:wght@400;500;600;700&display=swap" rel="stylesheet">
 <style>
   :root{
-    --void: #1F1029;
-    --void-2: #170B21;
-    --marigold: #E3A857;
-    --vermilion: #C1440E;
-    --parchment: #F2E8D5;
-    --ink: #2B1810;
-    --line: rgba(227,168,87,0.25);
+    --bg-main: #FAF6EF;      /* soft warm white/beige */
+    --bg-alt: #E9F3FA;       /* light blue - alternate sections */
+    --header-bg: rgba(255,255,255,0.85);
+    --gold: #C9A227;         /* muted gold accent */
+    --blue: #3D6E8F;         /* deep soft blue accent for CTAs */
+    --blue-dark: #2E5670;
+    --ink: #2B2620;          /* dark warm text */
+    --line: rgba(43,38,32,0.14);
   }
   *{box-sizing:border-box; margin:0; padding:0;}
   html{scroll-behavior:smooth;}
   body{
-    background: var(--void);
-    color: var(--parchment);
+    background: var(--bg-main);
+    color: var(--ink);
     font-family:'Mukta', sans-serif;
     line-height:1.6;
     overflow-x:hidden;
@@ -35,12 +36,12 @@
   .stars{
     position:fixed; inset:0; z-index:0; pointer-events:none;
     background-image:
-      radial-gradient(1px 1px at 20% 30%, rgba(227,168,87,0.5), transparent),
-      radial-gradient(1px 1px at 70% 60%, rgba(227,168,87,0.4), transparent),
-      radial-gradient(1.5px 1.5px at 40% 80%, rgba(227,168,87,0.35), transparent),
-      radial-gradient(1px 1px at 85% 20%, rgba(227,168,87,0.4), transparent),
-      radial-gradient(1.5px 1.5px at 60% 15%, rgba(227,168,87,0.3), transparent),
-      radial-gradient(1px 1px at 10% 65%, rgba(227,168,87,0.35), transparent);
+      radial-gradient(1px 1px at 20% 30%, rgba(201,162,39,0.35), transparent),
+      radial-gradient(1px 1px at 70% 60%, rgba(201,162,39,0.28), transparent),
+      radial-gradient(1.5px 1.5px at 40% 80%, rgba(61,110,143,0.22), transparent),
+      radial-gradient(1px 1px at 85% 20%, rgba(201,162,39,0.28), transparent),
+      radial-gradient(1.5px 1.5px at 60% 15%, rgba(61,110,143,0.2), transparent),
+      radial-gradient(1px 1px at 10% 65%, rgba(201,162,39,0.22), transparent);
     background-size: 100% 100%;
     opacity:0.6;
   }
@@ -50,21 +51,21 @@
     position:sticky; top:0; z-index:50;
     display:flex; align-items:center; justify-content:space-between;
     padding: 18px 6vw;
-    background: rgba(23,11,33,0.85);
+    background: var(--header-bg);
     backdrop-filter: blur(8px);
     border-bottom: 1px solid var(--line);
   }
   .brand{ display:flex; align-items:center; gap:10px; font-size:1.3rem; }
-  .brand .om{ color:var(--marigold); font-size:1.5rem; }
+  .brand .om{ color:var(--gold); font-size:1.5rem; }
   nav ul{ list-style:none; display:flex; gap:2.2rem; font-size:0.95rem; }
   nav a{ text-decoration:none; opacity:0.85; transition:opacity .2s, color .2s; }
-  nav a:hover{ opacity:1; color:var(--marigold); }
+  nav a:hover{ opacity:1; color:var(--blue); }
   .nav-cta{
-    background:var(--marigold); color:var(--void); padding:9px 20px;
+    background:var(--gold); color:var(--ink); padding:9px 20px;
     border-radius:2px; text-decoration:none; font-weight:600; font-size:0.9rem;
     font-family:'Mukta',sans-serif;
   }
-  .menu-btn{ display:none; background:none; border:none; color:var(--parchment); font-size:1.5rem; cursor:pointer; }
+  .menu-btn{ display:none; background:none; border:none; color:var(--ink); font-size:1.5rem; cursor:pointer; }
 
   /* ---------- hero ---------- */
   .hero{
@@ -75,36 +76,37 @@
   }
   .eyebrow{
     display:inline-block; font-family:'Rajdhani',sans-serif; letter-spacing:3px;
-    text-transform:uppercase; font-size:0.78rem; color:var(--marigold);
+    text-transform:uppercase; font-size:0.78rem; color:var(--blue);
     border:1px solid var(--line); padding:6px 14px; border-radius:20px; margin-bottom:22px;
+    background:#fff;
   }
   .hero h1{
     font-size: clamp(2.4rem, 4.5vw, 3.6rem);
     line-height:1.15;
     margin-bottom:20px;
   }
-  .hero h1 span{ color:var(--marigold); }
+  .hero h1 span{ color:var(--blue); }
   .hero p.lede{
     font-size:1.05rem; opacity:0.85; max-width:46ch; margin-bottom:32px;
   }
   .hero-ctas{ display:flex; gap:16px; flex-wrap:wrap; }
   .btn-primary{
-    background:var(--vermilion); color:var(--parchment); padding:14px 28px;
+    background:var(--blue); color:#fff; padding:14px 28px;
     border:none; border-radius:2px; font-size:1rem; font-weight:600; cursor:pointer;
     text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
     transition: transform .15s ease, background .2s ease;
   }
-  .btn-primary:hover{ background:#a8390c; transform:translateY(-2px); }
+  .btn-primary:hover{ background:var(--blue-dark); transform:translateY(-2px); }
   .btn-ghost{
-    background:transparent; color:var(--parchment); padding:14px 24px;
+    background:transparent; color:var(--ink); padding:14px 24px;
     border:1px solid var(--line); border-radius:2px; font-size:1rem; cursor:pointer;
     text-decoration:none; display:inline-block; font-family:'Mukta',sans-serif;
   }
-  .btn-ghost:hover{ border-color:var(--marigold); color:var(--marigold); }
+  .btn-ghost:hover{ border-color:var(--gold); color:var(--gold); }
 
   /* ---------- calculator (signature element) ---------- */
   .calc-card{
-    background: linear-gradient(160deg, rgba(227,168,87,0.08), rgba(193,68,14,0.06));
+    background: linear-gradient(160deg, rgba(201,162,39,0.10), rgba(61,110,143,0.08));
     border:1px solid var(--line);
     border-radius:6px;
     padding: 34px;
@@ -112,25 +114,26 @@
   }
   .calc-card .tag{
     font-family:'Rajdhani',sans-serif; text-transform:uppercase; letter-spacing:2px;
-    font-size:0.75rem; color:var(--marigold); margin-bottom:14px; display:block;
+    font-size:0.75rem; color:var(--gold); margin-bottom:14px; display:block;
   }
   .calc-tabs{ display:flex; gap:8px; margin-bottom:18px; }
   .calc-tab{
     flex:1; text-align:center; padding:9px; border:1px solid var(--line); border-radius:3px;
-    cursor:pointer; font-size:0.88rem; background:transparent; color:var(--parchment); font-family:'Mukta',sans-serif;
+    cursor:pointer; font-size:0.88rem; background:#fff; color:var(--ink); font-family:'Mukta',sans-serif;
   }
-  .calc-tab.active{ background:var(--marigold); color:var(--void); border-color:var(--marigold); font-weight:600; }
+  .calc-tab.active{ background:var(--gold); color:var(--ink); border-color:var(--gold); font-weight:600; }
   .calc-input{
     width:100%; padding:14px 16px; border-radius:3px; border:1px solid var(--line);
-    background:rgba(0,0,0,0.2); color:var(--parchment); font-size:1rem; margin-bottom:16px;
+    background:#fff; color:var(--ink); font-size:1rem; margin-bottom:16px;
     font-family:'Mukta',sans-serif;
   }
-  .calc-input::placeholder{ color:rgba(242,232,213,0.4); }
+  .calc-input::placeholder{ color:rgba(43,38,32,0.4); }
   .calc-btn{
-    width:100%; padding:13px; background:var(--marigold); color:var(--void); border:none;
+    width:100%; padding:13px; background:var(--blue); color:#fff; border:none;
     border-radius:3px; font-weight:700; font-size:0.95rem; cursor:pointer; font-family:'Mukta',sans-serif;
     letter-spacing:0.5px;
   }
+  .calc-btn:hover{ background:var(--blue-dark); }
   .calc-result{
     margin-top:26px; display:none; text-align:center;
   }
@@ -142,20 +145,22 @@
   .reduction-trail span{
     font-family:'Rajdhani',sans-serif; font-size:1.1rem; opacity:0; transform:translateY(6px);
     animation: riseIn .4s ease forwards;
+    color: var(--ink);
   }
-  .reduction-trail .arrow{ color:var(--marigold); opacity:0.6; }
+  .reduction-trail .arrow{ color:var(--gold); opacity:0.7; }
   @keyframes riseIn{ to{ opacity:1; transform:translateY(0); } }
   .final-digit{
     width:110px; height:110px; margin:0 auto 14px; border-radius:50%;
-    border:2px solid var(--marigold);
+    border:2px solid var(--gold);
     display:flex; align-items:center; justify-content:center;
-    font-family:'Rajdhani',sans-serif; font-size:3rem; font-weight:700; color:var(--marigold);
-    box-shadow: 0 0 0 6px rgba(227,168,87,0.08);
+    font-family:'Rajdhani',sans-serif; font-size:3rem; font-weight:700; color:var(--gold);
+    background:#fff;
+    box-shadow: 0 0 0 6px rgba(201,162,39,0.10);
     animation: pulseGlow 2.4s ease-in-out infinite;
   }
   @keyframes pulseGlow{
-    0%,100%{ box-shadow:0 0 0 6px rgba(227,168,87,0.08); }
-    50%{ box-shadow:0 0 0 12px rgba(227,168,87,0.14); }
+    0%,100%{ box-shadow:0 0 0 6px rgba(201,162,39,0.10); }
+    50%{ box-shadow:0 0 0 12px rgba(201,162,39,0.16); }
   }
   .calc-note{ font-size:0.88rem; opacity:0.75; max-width:34ch; margin:0 auto 16px; }
 
@@ -165,20 +170,20 @@
   .section-head .eyebrow{ margin-bottom:14px; }
   .section-head h2{ font-size:clamp(1.9rem, 3vw, 2.6rem); }
   .section-head p{ opacity:0.8; margin-top:14px; font-size:1.02rem; }
-  .light{ background:var(--parchment); color:var(--ink); }
-  .light .eyebrow{ border-color:rgba(43,24,16,0.2); }
-  .light hr.rule{ border-color:rgba(43,24,16,0.15); }
+  .light{ background:var(--bg-alt); color:var(--ink); }
+  .light .eyebrow{ border-color:rgba(43,38,32,0.2); background:#fff; }
+  .light hr.rule{ border-color:rgba(43,38,32,0.15); }
 
   hr.rule{ border:none; border-top:1px solid var(--line); margin: 26px 0; }
 
   /* ---------- services ---------- */
-  .services{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(43,24,16,0.15); }
+  .services{ display:grid; grid-template-columns:repeat(3,1fr); gap:0; border-top:1px solid rgba(43,38,32,0.15); }
   .service{
-    padding: 34px 28px; border-right:1px solid rgba(43,24,16,0.15); border-bottom:1px solid rgba(43,24,16,0.15);
+    padding: 34px 28px; border-right:1px solid rgba(43,38,32,0.15); border-bottom:1px solid rgba(43,38,32,0.15);
   }
   .service:nth-child(3n){ border-right:none; }
-  .service .sv-num{ font-family:'Rajdhani',sans-serif; font-size:0.85rem; color:var(--vermilion); font-weight:700; letter-spacing:1px; }
-  .service h3{ font-size:1.35rem; margin:10px 0 10px; color:var(--ink); }
+  .service .sv-num{ font-family:'Rajdhani',sans-serif; font-size:0.85rem; color:var(--blue); font-weight:700; letter-spacing:1px; }
+  .service h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.3rem; margin:10px 0 10px; color:var(--ink); letter-spacing:0.3px; }
   .service p{ font-size:0.95rem; opacity:0.85; }
 
   /* ---------- process ---------- */
@@ -189,26 +194,26 @@
     background: var(--line);
   }
   .step-num{
-    width:44px; height:44px; border-radius:50%; border:1px solid var(--marigold); color:var(--marigold);
+    width:44px; height:44px; border-radius:50%; border:1px solid var(--gold); color:var(--gold);
     display:flex; align-items:center; justify-content:center; font-family:'Rajdhani',sans-serif;
-    font-weight:700; margin-bottom:18px; position:relative; z-index:1; background:var(--void);
+    font-weight:700; margin-bottom:18px; position:relative; z-index:1; background:#fff;
   }
-  .step h3{ font-size:1.15rem; margin-bottom:8px; }
+  .step h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.15rem; margin-bottom:8px; letter-spacing:0.3px; }
   .step p{ font-size:0.92rem; opacity:0.8; max-width:26ch; }
 
   /* ---------- packages ---------- */
   .packages{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
   .pkg{
     border:1px solid var(--line); border-radius:6px; padding:32px 28px; position:relative;
-    display:flex; flex-direction:column;
+    display:flex; flex-direction:column; background:#fff;
   }
-  .pkg.featured{ border-color:var(--marigold); background:rgba(227,168,87,0.06); }
+  .pkg.featured{ border-color:var(--gold); background:rgba(201,162,39,0.08); }
   .pkg .badge{
-    position:absolute; top:-13px; right:24px; background:var(--vermilion); color:var(--parchment);
+    position:absolute; top:-13px; right:24px; background:var(--blue); color:#fff;
     font-size:0.72rem; padding:5px 12px; border-radius:20px; font-family:'Rajdhani',sans-serif; letter-spacing:1px;
   }
-  .pkg h3{ font-size:1.3rem; margin-bottom:6px; }
-  .pkg .price{ font-family:'Rajdhani',sans-serif; font-size:2.1rem; font-weight:700; color:var(--marigold); margin:14px 0; }
+  .pkg h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.3rem; margin-bottom:6px; letter-spacing:0.3px; }
+  .pkg .price{ font-family:'Rajdhani',sans-serif; font-size:2.1rem; font-weight:700; color:var(--gold); margin:14px 0; }
   .pkg .price small{ font-size:0.95rem; font-weight:500; opacity:0.7; font-family:'Mukta',sans-serif; }
   .pkg ul{ list-style:none; margin:18px 0 26px; flex:1; }
   .pkg li{ padding:7px 0; font-size:0.92rem; opacity:0.88; border-bottom:1px dashed var(--line); }
@@ -218,24 +223,24 @@
   .booking-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start; }
   .booking-form{ display:flex; flex-direction:column; gap:14px; }
   .booking-form input, .booking-form select, .booking-form textarea{
-    padding:13px 15px; border-radius:3px; border:1px solid rgba(43,24,16,0.25);
+    padding:13px 15px; border-radius:3px; border:1px solid rgba(43,38,32,0.25);
     background:#fff; font-family:'Mukta',sans-serif; font-size:0.95rem; color:var(--ink);
   }
   .booking-form label{ font-size:0.85rem; opacity:0.7; margin-bottom:-8px; }
   .booking-form .btn-primary{ margin-top:8px; }
   .why-list{ list-style:none; }
-  .why-list li{ padding:14px 0; border-bottom:1px solid rgba(43,24,16,0.15); display:flex; gap:14px; }
-  .why-list .why-num{ font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--vermilion); }
+  .why-list li{ padding:14px 0; border-bottom:1px solid rgba(43,38,32,0.15); display:flex; gap:14px; }
+  .why-list .why-num{ font-family:'Rajdhani',sans-serif; font-weight:700; color:var(--blue); }
 
   /* ---------- footer ---------- */
-  footer{ position:relative; z-index:1; padding:50px 6vw 30px; border-top:1px solid var(--line); }
+  footer{ position:relative; z-index:1; padding:50px 6vw 30px; border-top:1px solid var(--line); background:var(--bg-alt); }
   .foot-grid{ display:flex; justify-content:space-between; flex-wrap:wrap; gap:30px; margin-bottom:34px; }
-  .foot-brand .om{ color:var(--marigold); }
+  .foot-brand .om{ color:var(--gold); }
   .foot-links{ display:flex; gap:60px; flex-wrap:wrap; }
-  .foot-links h4{ font-family:'Rajdhani',sans-serif; font-size:0.82rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--marigold); margin-bottom:14px; }
+  .foot-links h4{ font-family:'Rajdhani',sans-serif; font-size:0.82rem; letter-spacing:1.5px; text-transform:uppercase; color:var(--blue); margin-bottom:14px; }
   .foot-links ul{ list-style:none; font-size:0.92rem; opacity:0.85; }
   .foot-links li{ margin-bottom:9px; }
-  .foot-bottom{ font-size:0.82rem; opacity:0.6; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
+  .foot-bottom{ font-size:0.82rem; opacity:0.65; display:flex; justify-content:space-between; flex-wrap:wrap; gap:10px; }
 
   @media (max-width: 860px){
     nav ul{ display:none; }
@@ -249,7 +254,7 @@
     .booking-wrap{ grid-template-columns:1fr; }
   }
 
-  :focus-visible{ outline:2px solid var(--marigold); outline-offset:3px; }
+  :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
   }
