@@ -210,6 +210,39 @@
   }
   .calc-note{ font-size:0.88rem; opacity:0.75; max-width:34ch; margin:0 auto 16px; }
 
+  /* ---------- 3D spinning coin badge ---------- */
+  .trust-coin{
+    position:absolute; top:-24px; right:-18px; z-index:5;
+    width:92px; height:92px; perspective:800px;
+  }
+  .coin-inner{
+    width:100%; height:100%; position:relative; transform-style:preserve-3d;
+    animation: coinSpin 7s linear infinite;
+  }
+  .coin-face{
+    position:absolute; inset:0; border-radius:50%;
+    display:flex; align-items:center; justify-content:center; flex-direction:column;
+    backface-visibility:hidden;
+    box-shadow: 0 14px 30px rgba(201,162,39,0.35), inset 0 3px 6px rgba(255,255,255,0.6), inset 0 -6px 10px rgba(120,90,10,0.25);
+    border: 2px solid #fff;
+  }
+  .coin-face.front{
+    background: radial-gradient(circle at 32% 28%, #F6E2A0, var(--gold) 70%, #A87F1E 100%);
+    color:#3a2a06; font-family:'Rajdhani',sans-serif; font-weight:700;
+  }
+  .coin-face.back{
+    background: radial-gradient(circle at 32% 28%, #F6E2A0, var(--gold) 70%, #A87F1E 100%);
+    color:#3a2a06; transform: rotateY(180deg);
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:0.62rem; text-align:center; line-height:1.2; padding:6px;
+  }
+  @keyframes coinSpin{
+    0%{ transform: rotateY(0deg); }
+    100%{ transform: rotateY(360deg); }
+  }
+  @media (max-width: 860px){
+    .trust-coin{ width:70px; height:70px; top:-14px; right:-10px; }
+  }
+
   /* ---------- trust strip ---------- */
   .trust-strip{
     position:relative; z-index:1;
@@ -321,6 +354,43 @@
   .pkg li{ padding:7px 0; font-size:0.92rem; opacity:0.88; border-bottom:1px dashed var(--line); }
   .pkg li:last-child{ border-bottom:none; }
 
+  /* ---------- testimonials ---------- */
+  .testi-grid{ display:grid; grid-template-columns:repeat(3,1fr); gap:24px; }
+  .testi-card{
+    background:#fff; border:1px solid var(--line); border-radius:12px; padding:28px 26px;
+    box-shadow: 0 12px 30px rgba(43,38,32,0.07);
+    display:flex; flex-direction:column; gap:14px;
+  }
+  .testi-top{ display:flex; align-items:center; gap:14px; }
+  .testi-avatar{
+    width:50px; height:50px; border-radius:50%; flex-shrink:0;
+    display:flex; align-items:center; justify-content:center;
+    font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.2rem; color:#fff;
+    background: linear-gradient(135deg, var(--blue), var(--blue-dark));
+  }
+  .testi-name{ font-weight:600; font-size:0.98rem; }
+  .testi-role{ font-size:0.8rem; opacity:0.65; }
+  .stars-row{ color:var(--gold); font-size:0.95rem; letter-spacing:2px; }
+  .testi-quote{ font-size:0.92rem; opacity:0.85; line-height:1.6; }
+
+  /* ---------- faq ---------- */
+  .faq-list{ max-width:760px; margin:0 auto; }
+  .faq-item{
+    background:#fff; border:1px solid var(--line); border-radius:10px;
+    margin-bottom:14px; padding:4px 22px; overflow:hidden;
+  }
+  .faq-item summary{
+    list-style:none; cursor:pointer; padding:16px 0; font-weight:600; font-size:1rem;
+    display:flex; align-items:center; justify-content:space-between; gap:12px;
+    font-family:'Mukta',sans-serif;
+  }
+  .faq-item summary::-webkit-details-marker{ display:none; }
+  .faq-item summary::after{
+    content:'+'; font-size:1.4rem; color:var(--gold); flex-shrink:0; transition: transform .25s ease;
+  }
+  .faq-item[open] summary::after{ transform: rotate(45deg); }
+  .faq-item p{ padding-bottom:18px; opacity:0.8; font-size:0.92rem; line-height:1.6; }
+
   /* ---------- booking ---------- */
   .booking-wrap{ display:grid; grid-template-columns:1fr 1fr; gap:5vw; align-items:start; }
   .booking-form{ display:flex; flex-direction:column; gap:14px; }
@@ -353,6 +423,7 @@
     .process{ flex-direction:column; gap:26px; }
     .step:not(:last-child)::after{ display:none; }
     .packages{ grid-template-columns:1fr; }
+    .testi-grid{ grid-template-columns:1fr; }
     .booking-wrap{ grid-template-columns:1fr; }
   }
 
@@ -453,6 +524,12 @@
   </div>
 
   <div class="calc-card" id="calculator">
+    <div class="trust-coin">
+      <div class="coin-inner">
+        <div class="coin-face front">ॐ<span style="font-size:0.55rem; margin-top:2px;">TRUSTED</span></div>
+        <div class="coin-face back">5000+<br>KHUSH<br>GRAHAK</div>
+      </div>
+    </div>
     <span class="tag">Free Mini Calculator</span>
     <div class="calc-tabs">
       <button class="calc-tab active" data-mode="name">Naam</button>
@@ -566,6 +643,81 @@
       </ul>
       <a href="#booking" class="btn-ghost">Yeh Chunein</a>
     </div>
+  </div>
+</section>
+
+<section class="reveal" id="testimonials">
+  <div class="section-head">
+    <span class="eyebrow">Grahak Anubhav</span>
+    <h2>Hamare grahak kya kehte hain</h2>
+  </div>
+  <div class="testi-grid">
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">R</div>
+        <div>
+          <div class="testi-name">Rohit Sharma</div>
+          <div class="testi-role">Naam Correction — Delhi</div>
+        </div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+      <p class="testi-quote">Naam correction ke baad sach mein career mein naye opportunities milne shuru hue. Report bahut detailed aur samajhne mein aasan thi.</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">P</div>
+        <div>
+          <div class="testi-name">Priya Mehta</div>
+          <div class="testi-role">Vastu Sallah — Jaipur</div>
+        </div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+      <p class="testi-quote">Ghar ka vastu upay bataye gaye — bina todphod ke, bahut simple changes se ghar mein positivity mehsoos hui. Highly recommended.</p>
+    </div>
+    <div class="testi-card">
+      <div class="testi-top">
+        <div class="testi-avatar">A</div>
+        <div>
+          <div class="testi-name">Amit Verma</div>
+          <div class="testi-role">Business Naam — Indore</div>
+        </div>
+      </div>
+      <div class="stars-row">★★★★★</div>
+      <p class="testi-quote">Naye business ka naam aur launch date suggest ki gayi thi — pehle hi mahine se growth dikhi. Consultation bahut professional tha.</p>
+    </div>
+  </div>
+</section>
+
+<section class="light reveal" id="faq">
+  <div class="section-head">
+    <span class="eyebrow">FAQ</span>
+    <h2>Aapke sawalon ke jawab</h2>
+  </div>
+  <div class="faq-list">
+    <details class="faq-item">
+      <summary>Report kitne samay mein milti hai?</summary>
+      <p>Booking ke baad, aapki personalised report generally 24-48 ghante ke andar WhatsApp ya email par bhej di jaati hai.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Kya naam badalna zaroori hai naam correction ke liye?</summary>
+      <p>Nahi. Zyaadatar cases mein sirf spelling mein chhota sa badlav sujhaya jaata hai — aapka official naam wahi rehta hai, sirf likhne ka tareeka thoda adjust hota hai.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Consultation call kitni der ki hoti hai?</summary>
+      <p>Package ke hisaab se 30-60 minute ki hoti hai, jisme aapke sawalon ka vistrit jawab diya jaata hai.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Kya vastu upay ke liye todphod karni padegi?</summary>
+      <p>Nahi, hamare upay hamesha vyavahaarik aur bina todphod ke hote hain — chhote changes se hi positive asar dikhta hai.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Payment kaise kar sakte hain?</summary>
+      <p>Booking form bharne ke baad hum WhatsApp par sampark karke payment aur further process detail se samjha dete hain.</p>
+    </details>
+    <details class="faq-item">
+      <summary>Kya online consultation available hai?</summary>
+      <p>Ji haan, saari consultations WhatsApp call/chat ke through online hoti hain — aap kahin se bhi connect ho sakte hain.</p>
+    </details>
   </div>
 </section>
 
@@ -738,6 +890,32 @@
     document.getElementById('finalDigit').textContent = trail[trail.length-1];
     document.getElementById('calcResult').classList.add('show');
   });
+
+  // ---------- interactive 3D tilt (follows cursor) ----------
+  function addTilt(selector){
+    document.querySelectorAll(selector).forEach(card=>{
+      card.style.transition = 'transform .15s ease';
+      card.addEventListener('mousemove', (e)=>{
+        const rect = card.getBoundingClientRect();
+        const x = e.clientX - rect.left;
+        const y = e.clientY - rect.top;
+        const cx = rect.width / 2;
+        const cy = rect.height / 2;
+        const rotateY = ((x - cx) / cx) * 8;
+        const rotateX = -((y - cy) / cy) * 8;
+        card.style.transform = `perspective(900px) rotateX(${rotateX}deg) rotateY(${rotateY}deg) translateY(-6px) scale(1.02)`;
+      });
+      card.addEventListener('mouseleave', ()=>{
+        card.style.transition = 'transform .4s ease';
+        card.style.transform = '';
+      });
+      card.addEventListener('mouseenter', ()=>{
+        card.style.transition = 'transform .15s ease';
+      });
+    });
+  }
+  addTilt('.pkg');
+  addTilt('.testi-card');
 
   // ---------- scroll reveal ----------
   const revealEls = document.querySelectorAll('.reveal');
