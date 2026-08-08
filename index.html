@@ -56,7 +56,7 @@
     border-bottom: 1px solid var(--line);
     box-shadow: 0 4px 24px rgba(43,38,32,0.05);
   }
-  .brand{ display:flex; align-items:center; gap:10px; font-size:1.3rem; }
+  .brand{ display:flex; align-items:center; gap:10px; font-size:1.3rem; white-space:nowrap; }
   .brand .om{ color:var(--gold); font-size:1.5rem; }
   nav ul{ list-style:none; display:flex; gap:2.2rem; font-size:0.95rem; }
   nav a{ text-decoration:none; opacity:0.85; transition:opacity .2s, color .2s; }
@@ -321,6 +321,14 @@
     .booking-wrap{ grid-template-columns:1fr; }
   }
 
+  @media (max-width: 520px){
+    header{ padding: 14px 4vw; }
+    .brand{ font-size:0.95rem; gap:6px; }
+    .brand .om{ font-size:1.15rem; }
+    .brand-sub{ display:none; }
+    .nav-cta{ padding:8px 12px; font-size:0.72rem; letter-spacing:0; }
+  }
+
   :focus-visible{ outline:2px solid var(--gold); outline-offset:3px; }
   @media (prefers-reduced-motion: reduce){
     *{ animation-duration:0.01ms !important; animation-iteration-count:1 !important; }
@@ -331,7 +339,7 @@
 <div class="stars"></div>
 
 <header>
-  <div class="brand"><span class="om">ॐ</span> Viraat Numerology <span style="opacity:.5">Magics</span></div>
+  <div class="brand"><span class="om">ॐ</span> Viraat Numerology <span class="brand-sub" style="opacity:.5">Magics</span></div>
   <nav><ul>
     <li><a href="#calculator">Calculator</a></li>
     <li><a href="#services">Services</a></li>
