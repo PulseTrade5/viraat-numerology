@@ -500,6 +500,36 @@
     100%{ opacity:0; transform:translate(var(--sx), var(--sy)) scale(1.3) rotate(180deg); }
   }
 
+  /* ---------- screenshot gallery ---------- */
+  .screenshot-gallery-head{ text-align:center; margin:50px 0 24px; }
+  .screenshot-gallery-head h3{ font-family:'Rajdhani',sans-serif; font-weight:700; font-size:1.3rem; margin-top:10px; }
+  .screenshot-gallery{
+    display:grid; grid-template-columns:repeat(auto-fit, minmax(200px, 1fr)); gap:18px;
+  }
+  .screenshot-gallery img{
+    width:100%; border-radius:10px; cursor:zoom-in;
+    border:1px solid var(--line);
+    box-shadow: 0 10px 26px rgba(43,38,32,0.10);
+    transition: transform .2s ease, box-shadow .2s ease;
+  }
+  .screenshot-gallery img:hover{
+    transform:translateY(-4px);
+    box-shadow: 0 16px 34px rgba(43,38,32,0.16);
+  }
+  .screenshot-lightbox{
+    position:fixed; inset:0; z-index:300; background:rgba(20,15,8,0.88);
+    display:none; align-items:center; justify-content:center; padding:30px;
+  }
+  .screenshot-lightbox.open{ display:flex; }
+  .screenshot-lightbox img{
+    max-width:100%; max-height:88vh; border-radius:8px;
+    box-shadow: 0 30px 70px rgba(0,0,0,0.5);
+  }
+  .screenshot-lightbox-close{
+    position:absolute; top:20px; right:24px; background:none; border:none;
+    color:#fff; font-size:2rem; cursor:pointer; line-height:1;
+  }
+
   /* ---------- review form ---------- */
   .review-cta{ text-align:center; margin-top:40px; }
   .review-form{
@@ -881,6 +911,19 @@
     </div>
   </div>
 
+  <div class="screenshot-gallery-head">
+    <span class="eyebrow">Asli Proof</span>
+    <h3>WhatsApp Se Real Feedback</h3>
+  </div>
+  <div class="screenshot-gallery">
+    <img src="review-smita.jpg" alt="Smita Das WhatsApp review screenshot" loading="lazy">
+    <img src="review-tushar.jpg" alt="Tushar Vadgama WhatsApp review screenshot" loading="lazy">
+    <img src="review-niti.jpg" alt="Niti Wankhade WhatsApp review screenshot" loading="lazy">
+    <img src="review-nitin.jpg" alt="Dr Nitin Bajaj WhatsApp review screenshot" loading="lazy">
+    <img src="review-prabhat.jpg" alt="Prabhat Tanwar WhatsApp review screenshot" loading="lazy">
+    <img src="review-naveen.jpg" alt="Naveen WhatsApp review screenshot" loading="lazy">
+  </div>
+
   <div class="review-cta">
     <button id="openReviewBtn" class="btn-primary" type="button">✦ Apna Review Dein</button>
   </div>
@@ -1005,6 +1048,11 @@
     <span>🔱 Har Har Mahadev</span>
   </div>
 </footer>
+
+<div class="screenshot-lightbox" id="screenshotLightbox">
+  <button class="screenshot-lightbox-close" id="lightboxCloseBtn" aria-label="Band karein">✕</button>
+  <img id="lightboxImg" src="" alt="Review screenshot enlarged">
+</div>
 
 <div class="sticky-cta">
   <a href="#booking">✦ Apna Report Book Karein</a>
@@ -1249,6 +1297,23 @@
       });
     });
   }catch(e){ console.error('Sparkle effect error:', e); }
+
+  // ---------- screenshot lightbox ----------
+  try{
+    const lightbox = document.getElementById('screenshotLightbox');
+    const lightboxImg = document.getElementById('lightboxImg');
+    const lightboxCloseBtn = document.getElementById('lightboxCloseBtn');
+    document.querySelectorAll('.screenshot-gallery img').forEach(img=>{
+      img.addEventListener('click', ()=>{
+        lightboxImg.src = img.src;
+        lightboxImg.alt = img.alt;
+        lightbox.classList.add('open');
+      });
+    });
+    function closeLightbox(){ lightbox.classList.remove('open'); lightboxImg.src=''; }
+    lightboxCloseBtn.addEventListener('click', closeLightbox);
+    lightbox.addEventListener('click', (e)=>{ if(e.target === lightbox) closeLightbox(); });
+  }catch(e){ console.error('Lightbox error:', e); }
 
   // ---------- review form ----------
   try{
